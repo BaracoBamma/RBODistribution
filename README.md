@@ -8,12 +8,12 @@ Sample output for a level 30 swordsman:
 
 Your swordsman's distribution is:
 
-str: 50, which adds 30.202% more damage to your attacks.
+STR: 50, which adds 30.202% more damage to your attacks.
 
-agi: 40, which quickens your animations and attack speed by 18.4%.
+AGI: 40, which quickens your animations and attack speed by 18.4%.
 
-dex: 10, which increases and shrinks your damage range to deal  1.5152% more damage overall.
+DEX: 10, which increases and shrinks your damage range to deal  1.5152% more damage overall.
 
-vit: 10, which adds 1.01% more damage to your attacks.
+VIT: 10, which adds 1.01% more damage to your attacks.
 
-luk: 93, which increases your crit chance to 47.5%, increases your crit multiplier to 156.5%, which results in an average DPS increase of 74.3375%.
+LUK: 93, which increases your crit chance to 47.5%, increases your crit multiplier to 156.5%, which results in an average DPS increase of 74.3375%.
