@@ -8,12 +8,32 @@ Sample output for a level 30 swordsman:
 
 Your swordsman's distribution is:
 
-STR: 50, which adds 30.202% more damage to your attacks.
+STR: 50
 
-AGI: 40, which quickens your animations and attack speed by 18.4%.
+AGI: 40
 
-DEX: 10, which increases and shrinks your damage range to deal  1.5152% more damage overall.
+DEX: 10
 
-VIT: 10, which adds 1.01% more damage to your attacks.
+VIT: 1
 
-LUK: 93, which increases your crit chance to 47.5%, increases your crit multiplier to 156.5%, which results in an average DPS increase of 74.3375%.
+LUK: 94
+
+Your base damage is: 90% + 40% (Sword Mastery lvl 10) + 30.202% (from STR) + 0.101% (from VIT).
+
+Total: 160.303%.
+
+This damage is amplified by your animation (attack) speed: 98% + 18.4%. (from AGI)
+
+Total: 116.4%.
+
+This damage is amplified by your damage range modifier: 101.515%. (from DEX)
+
+This damage is amplified by your critical attack modifier:
+
+Crit chance: 48%
+
+Crit Multiplier: 161.7%.
+
+Avg damage amp: 177.616%.
+
+Overall, your damage is increased by: 336.44%.
