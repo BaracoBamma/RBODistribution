@@ -54,7 +54,7 @@ void assignPoints () {
 	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
 	double vitValue = vitGain / vitCost;
-	lukGain = ((((luk+1) * .005) + baseCritChance) * (((luk +1) * .005 + baseCritMult))) - (((luk * .005) + baseCritChance) * ((luk * .005 + baseCritMult)));
+	lukGain = (((((luk+1) * .005) + baseCritChance) * ((luk +1) * .005 + 1) * baseCritMult) - (((luk * .005) + baseCritChance) * ((luk * .005 + 1) * baseCritMult)));
 	double lukValue = lukGain / lukCost;
 	double valuesWithLuk[] = {strValue, agiValue, dexValue, vitValue, lukValue};
 	double maxValue = max(strValue, max(agiValue, max(dexValue, max(vitValue, lukValue))));
@@ -133,8 +133,8 @@ int main() {
 		levelUp();
 	}
 	for(int i = 0; i < 600; i++) {
-		//assignPoints();
-		assignPointsWithoutLuk();
+		 	 assignPoints();
+		//assignPointsWithoutLuk();
 	}
 	cout << "Your swordsman's distribution is:" << endl;
 	cout << "str: " << str << ", which adds " << str * strGain * 100 << "% more damage to your attacks."<< endl;
@@ -142,7 +142,21 @@ int main() {
 	cout << "dex: " << dex << ", which increases and shrinks your damage range to deal  " << dex * dexGain * 100 << "% more damage overall." << endl;
 	cout << "vit: " << vit << ", which adds " << vit * vitGain * 100 << "% more damage to your attacks." << endl;
 	cout << "luk: " << luk << ", which increases your crit chance to " << ((luk * .005) + baseCritChance) * 100 <<
-					"%, increases your crit multiplier to " << ((luk * .005) + baseCritMult) * 100 << "%, which results in an average DPS increase of "
-					<< (((luk * .005) + baseCritChance) * ((luk * .005 + baseCritMult))) * 100 << "%." << endl;
+					"%, increases your crit multiplier to " << ((luk * .005) * baseCritMult) * 100 << "%, which results in an average DPS increase of "
+					<< (((luk * .005) + baseCritChance) * (((luk * .005 ) * baseCritMult))) * 100 << "%." << endl;
+
+	/*
+	 * What still needs do be done?
+	 * Check RBO wiki for updating info
+	 * 1) crit mult is multiplicative: 110*LUKaddedcritmultiplier
+	 * 	2) actual benefits of linear damage increase as opposed to amplifiers
+	 * 	 Melee damage = 90% + (STR/99)*59.8% + (VIT/99)*10% + 40%(sword mastery)
+	 *
+	 * 	 Multiply by DEX bonus + 90%
+	 *
+	 * 	 Multiply by attack speed bonus from AGI (AGIbonus + 98%)
+	 *
+	 * 	 Calculate the gains 1 more point would give at each time
+	 */
 	return 0;
 }
