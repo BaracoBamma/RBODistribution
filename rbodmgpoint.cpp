@@ -54,7 +54,8 @@ void assignPoints () {
 	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
 	double vitValue = vitGain / vitCost;
-	lukGain = (((((luk+1) * .005) + baseCritChance) * ((luk +1) * .005 + 1) * baseCritMult) - (((luk * .005) + baseCritChance) * ((luk * .005 + 1) * baseCritMult)));
+	lukGain = (((((luk+1) * .005) + baseCritChance) * ((luk+1) * .005 + 1) * baseCritMult) - 
+			  (((luk      * .005) + baseCritChance) * ((luk    * .005 + 1) * baseCritMult)));
 	double lukValue = lukGain / lukCost;
 	double valuesWithLuk[] = {strValue, agiValue, dexValue, vitValue, lukValue};
 	double maxValue = max(strValue, max(agiValue, max(dexValue, max(vitValue, lukValue))));
@@ -95,7 +96,7 @@ void assignPointsWithoutLuk () {
 	int agiCost = agi / 10 + 1;
 	int dexCost = dex / 10 + 1;
 	int vitCost = vit / 10 + 1;
-	double strValue = strGain / (strCost); //dps increase with cost accounted
+	double strValue = strGain / strCost; //dps increase with cost accounted
 	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
 	double vitValue = vitGain / vitCost;
@@ -133,22 +134,33 @@ int main() {
 		levelUp();
 	}
 	for(int i = 0; i < 600; i++) {
-		 	 assignPoints();
+		assignPoints();
 		//assignPointsWithoutLuk();
 	}
 	cout << "Your swordsman's distribution is:" << endl;
-	cout << "str: " << str << ", which adds " << str * strGain * 100 << "% more damage to your attacks."<< endl;
-	cout << "agi: " << agi << ", which quickens your animations and attack speed by "<< agi * agiGain * 100 << "%." << endl;
-	cout << "dex: " << dex << ", which increases and shrinks your damage range to deal  " << dex * dexGain * 100 << "% more damage overall." << endl;
-	cout << "vit: " << vit << ", which adds " << vit * vitGain * 100 << "% more damage to your attacks." << endl;
-	cout << "luk: " << luk << ", which increases your crit chance to " << ((luk * .005) + baseCritChance) * 100 <<
-					"%, increases your crit multiplier to " << ((luk * .005) * baseCritMult) * 100 << "%, which results in an average DPS increase of "
-					<< (((luk * .005) + baseCritChance) * (((luk * .005 ) * baseCritMult))) * 100 << "%." << endl;
+	cout << "STR: " << str << endl;
+	cout << "AGI: " << agi << endl;
+	cout << "DEX: " << dex << endl;
+	cout << "VIT: " << vit << endl;
+	cout << "LUK: " << luk << endl;
+	double damage = (90 + 40 + (str * strGain * 100) + (vit * vitGain * 100))/100;
+	double agiAmp = (98 + (agi * agiGain * 100)) / 100;
+	double dexAmp = (100 + (dex * dexGain * 100)) / 100;
+	double lukAmp = (((luk * .005) + baseCritChance) * (((luk * .005 + 1) * baseCritMult))) + 1;
+	cout << "Your base damage is: 90% + 40% (Sword Mastery lvl 10) + " << str * strGain * 100 << "% (from STR) + " << vit * vitGain * 100 << "% (from VIT)." << endl <<
+			"Total: " << damage * 100 << "%." << endl;
+	cout << "This damage is amplified by your animation (attack) speed: 98% + " << agi * agiGain * 100 << "%. (from AGI)" << endl <<
+			"Total: " << agiAmp * 100<< "%." << endl;
+	cout << "This damage is amplified by your damage range modifier: " << dexAmp  * 100<< "%. (from DEX)" << endl;
+	cout << "This damage is amplified by your critical attack modifier: " << endl <<
+			"Crit chance: " << ((luk * .005) + baseCritChance) * 100 << "%" << endl <<
+			"Crit Multiplier: " << ((luk * .005 + 1) * baseCritMult) * 100 << "%." << endl <<
+			"Avg damage amp: " << lukAmp * 100 << "%." << endl << endl;
 
+	cout << "Overall, your damage is increased by: " << damage * agiAmp * dexAmp * (lukAmp * 100) << "%." << endl;
 	/*
 	 * What still needs do be done?
 	 * Check RBO wiki for updating info
-	 * 1) crit mult is multiplicative: 110*LUKaddedcritmultiplier
 	 * 	2) actual benefits of linear damage increase as opposed to amplifiers
 	 * 	 Melee damage = 90% + (STR/99)*59.8% + (VIT/99)*10% + 40%(sword mastery)
 	 *
@@ -157,6 +169,13 @@ int main() {
 	 * 	 Multiply by attack speed bonus from AGI (AGIbonus + 98%)
 	 *
 	 * 	 Calculate the gains 1 more point would give at each time
+
+	 	3) factor in base stats gains from lvls
+		4) buffs from acolyte?
+		5) no agi builds
+		6) calculations are STILL LINEAR-BASED, needs to be changed to address formulas and actual dps gains per point (like LUK calculations, but more for all stats)
+		7) best distributions at certain levels?
+		8) maybe it would be better to brute force every single unique skill point allocation distribution? short term gains may not be the best choice
 	 */
 	return 0;
 }
