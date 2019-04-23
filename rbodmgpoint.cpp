@@ -50,7 +50,7 @@ void assignPoints () {
 	int dexCost = dex / 10 + 1;
 	int vitCost = vit / 10 + 1;
 	int lukCost = luk / 10 + 1;
-	double strValue = strGain / (strCost); //dps increase with cost accounted
+	double strValue = strGain / strCost; //dps increase with cost accounted
 	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
 	double vitValue = vitGain / vitCost;
