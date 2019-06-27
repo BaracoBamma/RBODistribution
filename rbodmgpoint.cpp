@@ -17,11 +17,6 @@ double vitGain = .00101;
 double lukGain = 0;
 double baseCritChance = .01;
 double baseCritMult = 1.1;
-int strCost = 1;
-int agiCost = 1;
-int dexCost = 1;
-int vitCost = 1;
-int lukCost = 1;
 
 void levelUp(){
 	if(level >= 30){
@@ -45,11 +40,11 @@ void levelUp(){
 	}
 }
 void assignPoints () {
-	int strCost = str / 10 + 1;
-	int agiCost = agi / 10 + 1;
-	int dexCost = dex / 10 + 1;
-	int vitCost = vit / 10 + 1;
-	int lukCost = luk / 10 + 1;
+	int strCost = str / 10 + 2;
+	int agiCost = agi / 10 + 2;
+	int dexCost = dex / 10 + 2;
+	int vitCost = vit / 10 + 2;
+	int lukCost = luk / 10 + 2;
 	double strValue = strGain / strCost; //dps increase with cost accounted
 	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
@@ -91,17 +86,15 @@ void assignPoints () {
 		}
 	}
 }
-void assignPointsWithoutLuk () {
-	int strCost = str / 10 + 1;
-	int agiCost = agi / 10 + 1;
-	int dexCost = dex / 10 + 1;
-	int vitCost = vit / 10 + 1;
+void assignPointsWithoutLukAgi () {
+	int strCost = str / 10 + 2;
+	int dexCost = dex / 10 + 2;
+	int vitCost = vit / 10 + 2;
 	double strValue = strGain / strCost; //dps increase with cost accounted
-	double agiValue = agiGain / agiCost;
 	double dexValue = dexGain / dexCost;
 	double vitValue = vitGain / vitCost;
-	double values[] = {strValue, agiValue, dexValue, vitValue};
-	double maxValue = max(strValue, max(agiValue, max(dexValue, vitValue)));
+	double values[] = {strValue, dexValue, vitValue};
+	double maxValue = max(strValue,  max(dexValue, vitValue));
 	for(int i = 0; i < 4; i++){
 		if(maxValue == values[i]){
 			switch (i) {
@@ -110,17 +103,12 @@ void assignPointsWithoutLuk () {
 						status -= strCost;
 						str++;
 					} break;
-				case 1: //agi
-					if(status >= agiCost){
-						status -= agiCost;
-						agi++;
-					} break;
-				case 2: //dex
+				case 1: //dex
 					if(status >= dexCost){
 						status -= dexCost;
 						dex++;
 					} break;
-				case 3: //vit
+				case 2: //vit
 					if(status >= vitCost){
 						status -= vitCost;
 						vit++;
@@ -134,8 +122,8 @@ int main() {
 		levelUp();
 	}
 	for(int i = 0; i < 600; i++) {
-		assignPoints();
-		//assignPointsWithoutLuk();
+		//assignPoints()
+		assignPointsWithoutLukAgi();
 	}
 	cout << "Your swordsman's distribution is:" << endl;
 	cout << "STR: " << str << endl;
@@ -160,13 +148,6 @@ int main() {
 	cout << "Overall, your damage is increased by: " << damage * agiAmp * dexAmp * (lukAmp * 100) << "%." << endl;
 	/*
 	 * What still needs do be done?
-	 * Check RBO wiki for updating info
-	 * 	2) actual benefits of linear damage increase as opposed to amplifiers
-	 * 	 Melee damage = 90% + (STR/99)*59.8% + (VIT/99)*10% + 40%(sword mastery)
-	 *
-	 * 	 Multiply by DEX bonus + 90%
-	 *
-	 * 	 Multiply by attack speed bonus from AGI (AGIbonus + 98%)
 	 *
 	 * 	 Calculate the gains 1 more point would give at each time
 
