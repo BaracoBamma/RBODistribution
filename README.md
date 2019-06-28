@@ -8,32 +8,32 @@ Sample output for a level 30 swordsman:
 
 Your swordsman's distribution is:
 
-STR: 50
+STR: 102
 
-AGI: 40
+AGI: 1
 
-DEX: 10
+DEX: 20
 
-VIT: 1
+VIT: 10
 
-LUK: 94
+LUK: 1
 
-Your base damage is: 90% + 40% (Sword Mastery lvl 10) + 30.202% (from STR) + 0.101% (from VIT).
+Your base damage is: 90% + 40% (Sword Mastery lvl 10) + 61.6121% (from STR) + 1.01% (from VIT).
 
-Total: 160.303%.
+Total: 192.622%.
 
-This damage is amplified by your animation (attack) speed: 98% + 18.4%. (from AGI)
+This damage is amplified by your animation (attack) speed: 98% + 0.46%.(from AGI)
 
-Total: 116.4%.
+Total: 98.46%.
 
-This damage is amplified by your damage range modifier: 101.515%. (from DEX)
+This damage is amplified by your damage range modifier: 103.03%. (from DEX)
 
 This damage is amplified by your critical attack modifier:
 
-Crit chance: 48%
+Crit chance: 1.5%
 
-Crit Multiplier: 161.7%.
+Crit Multiplier: 110.55%.
 
-Avg damage amp: 177.616%.
+Avg damage amp: 101.658%.
 
-Overall, your damage is increased by: 336.44%.
+Overall, your damage is increased by: 198.643%.
